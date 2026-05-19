@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 import { AuthService, LoginResponse } from "@/services/auth.service";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("admin@gmail.com");
+  const [password, setPassword] = useState("admin");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
@@ -100,6 +100,38 @@ export default function LoginPage() {
 
           {/* Form */}
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+            {/* Quick Demo Login */}
+            <div 
+              onClick={() => {
+                setEmail("admin@gmail.com");
+                setPassword("admin");
+              }}
+              className="group cursor-pointer rounded-lg p-3 text-xs flex flex-col gap-1.5 transition-all"
+              style={{
+                background: 'rgba(229, 9, 20, 0.05)',
+                border: '1px dashed rgba(229, 9, 20, 0.3)',
+                color: '#e5e2e3',
+                userSelect: 'none'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(229, 9, 20, 0.1)';
+                e.currentTarget.style.borderColor = '#e50914';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(229, 9, 20, 0.05)';
+                e.currentTarget.style.borderColor = 'rgba(229, 9, 20, 0.3)';
+              }}
+            >
+              <div className="flex items-center justify-between font-bold text-red-500">
+                <span className="flex items-center gap-1">🔑 DEMO ADMIN ACCESS</span>
+                <span className="text-[10px] bg-red-500/20 px-2 py-0.5 rounded text-white group-hover:bg-red-500 transition-colors font-medium">Click to Auto-fill</span>
+              </div>
+              <div className="flex justify-between text-gray-400 mt-0.5">
+                <span>Email: <strong className="text-white font-mono">admin@gmail.com</strong></span>
+                <span>Password: <strong className="text-white font-mono">admin</strong></span>
+              </div>
+            </div>
+
             <div className="flex flex-col gap-1">
               <label className="text-xs px-1" style={{ color: '#c8c6c8' }}>
                 Email
